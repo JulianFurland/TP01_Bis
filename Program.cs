@@ -1,26 +1,21 @@
-﻿Console.WriteLine("Ingresa *C* para agregar un curso, *S* para las estadísticas, u otra cosa para terminar");
-string ingreso = Console.ReadLine().ToLower();
+﻿string ingreso = IngresoStringToLower("Ingresa *C* para agregar un curso, *S* para las estadísticas, u otra cosa para terminar");
 Dictionary<string,int> DicCursos = new Dictionary<string,int>();
 while(ingreso == "c" || ingreso == "s")
 {
 switch(ingreso)
 {
     case "c":
-    Console.WriteLine("Ingresa el nombre del curso, o -1 para terminar");
-    string nombreCurso = Console.ReadLine();
+    string nombreCurso = IngresoStringToLower("Ingresa el nombre del curso, o -1 para terminar");
     while (nombreCurso != "-1")
     {
         DicCursos.Add(nombreCurso, 0);
-        Console.WriteLine("Ingresa la cantidad de alumnos en el curso");
-        int cantEst = int.Parse(Console.ReadLine());
+        int cantEst = int.Parse(IngresoStringToLower("Ingresa la cantidad de alumnos en el curso"));
         for(int i = 0; i < cantEst; i++)
         {  
-            Console.WriteLine("Ingresa la cantidad de plata que ingreso el alumno " + (i+1).ToString());
-            int plata = int.Parse(Console.ReadLine());
+            int plata = int.Parse(IngresoStringToLower("Ingresa la cantidad de plata que ingreso el alumno " + (i+1).ToString()));
             DicCursos[nombreCurso] += plata;
         }
-        Console.WriteLine("Ingresa el nombre de otro curso, o -1 para terminar");
-        nombreCurso = Console.ReadLine();
+        nombreCurso = IngresoStringToLower("Ingresa el nombre de otro curso, o -1 para terminar");
     }
     break;
     case "s":
@@ -44,6 +39,10 @@ switch(ingreso)
     Console.WriteLine("La cantidad de cursos que aportaron fue: " + DicCursos.Count);
     break;
 }
-Console.WriteLine("Ingresa *C* seguir agregando cursos, *S* para las estadísticas, u otra cosa para terminar");
-ingreso = Console.ReadLine().ToLower();
+ingreso = IngresoStringToLower("Ingresa *C* seguir agregando cursos, *S* para las estadísticas, u otra cosa para terminar");
+}
+string IngresoStringToLower(string msg)
+{
+    Console.WriteLine(msg);
+    return Console.ReadLine().ToLower();
 }
